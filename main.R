@@ -2,13 +2,15 @@ library(dplyr)
 rawdata <- read.csv("rawdata.csv")
 
 # 不要な変数を指定して削除する
-excluded_vars <- c("SAMPLEID", "clid")
+excluded_vars <- c("SAMPLEID", "clid","F3")
 data <- select(rawdata, -excluded_vars)
 
+# 2値変数を0か1にする
+data$TARGET <- as.integer(data$TARGET - 1)
+data$F1 <- as.integer(data$F1 - 1)
+data$F4 <- as.integer(data$F4 - 1)
 
 View(data)
-
-# # View(rawdata)
 # str(rawdata)
 #
 # is_living <- vector()g
