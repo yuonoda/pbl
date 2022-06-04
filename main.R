@@ -1,15 +1,17 @@
 library(dplyr)
 rawdata <- read.csv("rawdata.csv")
 
-# 不要な変数を削除
+# 不要な変数を指定して削除する
 excluded_vars <- c("SAMPLEID", "clid")
 data <- select(rawdata, -excluded_vars)
+
+
 View(data)
 
 # # View(rawdata)
 # str(rawdata)
 #
-# is_living <- vector()
+# is_living <- vector()g
 # sex <- vector()
 # age <- vector()
 # is_married <- vector()
