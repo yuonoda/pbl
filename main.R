@@ -13,4 +13,18 @@ data$F1 <- as.integer(data$F1 - 1) # 男:0, 女:1
 data$F4 <- as.integer(data$F4 - 1) # 未婚:0, 既婚:1
 data$F5 <- as.integer(data$F5 - 1) # 子なし:0, 子あり:1
 
+# 欠損値の整理
+# わからない・無回答などの回答を欠損値として、順序尺度として扱えるようにする
+for (i in 1:nrow(data)) {
+    # 世帯年収
+    if (data$F6[i] == "10") {
+      data$F6[i] <- NA
+    }
+
+    # 個人年収
+    if (is.na(data$F7[i]) | data$F7[i] == "10") {
+      data$F7[i] <- NA
+    }
+
+}
 View(data)
