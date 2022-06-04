@@ -16,18 +16,31 @@ data$F5 <- as.integer(data$F5 - 1) # 子なし:0, 子あり:1
 # 欠損値の整理
 # わからない・無回答などの回答を欠損値として、値を順序尺度として扱えるようにする
 for (i in 1:nrow(data)) {
-    # 世帯年収
-    if (data$F6[i] == 10) {
-      data$F6[i] <- NA
-    }
+  # 世帯年収
+  if (data$F6[i] == 10) {
+    data$F6[i] <- NA
+  }
 
-    # 個人年収
-    if (is.na(data$F7[i]) | data$F7[i] == 10) {
-      data$F7[i] <- NA
-    }
+  # 個人年収
+  if (is.na(data$F7[i]) | data$F7[i] == 10) {
+    data$F7[i] <- NA
+  }
 }
 
 # 職業の回答をダミー変数にする
+data$F8_1 <- ifelse(data$F8 == 1, as.integer(1), as.integer(0))
+data$F8_2 <- ifelse(data$F8 == 2, as.integer(1), as.integer(0))
+data$F8_3 <- ifelse(data$F8 == 3, as.integer(1), as.integer(0))
+data$F8_4 <- ifelse(data$F8 == 4, as.integer(1), as.integer(0))
+data$F8_5 <- ifelse(data$F8 == 5, as.integer(1), as.integer(0))
+data$F8_6 <- ifelse(data$F8 == 6, as.integer(1), as.integer(0))
+data$F8_7 <- ifelse(data$F8 == 7, as.integer(1), as.integer(0))
+data$F8_8 <- ifelse(data$F8 == 8, as.integer(1), as.integer(0))
+data$F8_9 <- ifelse(data$F8 == 9, as.integer(1), as.integer(0))
+data$F8_10 <- ifelse(data$F8 == 10, as.integer(1), as.integer(0))
+data$F8_11 <- ifelse(data$F8 == 11, as.integer(1), as.integer(0))
+data$F8_12 <- ifelse(data$F8 == 12, as.integer(1), as.integer(0))
+data <- select(data, -"F8")
 
 # 居住区をダミー変数にする
 
