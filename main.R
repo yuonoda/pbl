@@ -14,17 +14,21 @@ data$F4 <- as.integer(data$F4 - 1) # 未婚:0, 既婚:1
 data$F5 <- as.integer(data$F5 - 1) # 子なし:0, 子あり:1
 
 # 欠損値の整理
-# わからない・無回答などの回答を欠損値として、順序尺度として扱えるようにする
+# わからない・無回答などの回答を欠損値として、値を順序尺度として扱えるようにする
 for (i in 1:nrow(data)) {
     # 世帯年収
-    if (data$F6[i] == "10") {
+    if (data$F6[i] == 10) {
       data$F6[i] <- NA
     }
 
     # 個人年収
-    if (is.na(data$F7[i]) | data$F7[i] == "10") {
+    if (is.na(data$F7[i]) | data$F7[i] == 10) {
       data$F7[i] <- NA
     }
-
 }
+
+# 職業の回答をダミー変数にする
+
+# 居住区をダミー変数にする
+
 View(data)
