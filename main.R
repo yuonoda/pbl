@@ -28,20 +28,25 @@ for (i in 1:nrow(data)) {
 }
 
 # 職業の回答をダミー変数にする
-data$F8_1 <- ifelse(data$F8 == 1, as.integer(1), as.integer(0))
-data$F8_2 <- ifelse(data$F8 == 2, as.integer(1), as.integer(0))
-data$F8_3 <- ifelse(data$F8 == 3, as.integer(1), as.integer(0))
-data$F8_4 <- ifelse(data$F8 == 4, as.integer(1), as.integer(0))
-data$F8_5 <- ifelse(data$F8 == 5, as.integer(1), as.integer(0))
-data$F8_6 <- ifelse(data$F8 == 6, as.integer(1), as.integer(0))
-data$F8_7 <- ifelse(data$F8 == 7, as.integer(1), as.integer(0))
-data$F8_8 <- ifelse(data$F8 == 8, as.integer(1), as.integer(0))
-data$F8_9 <- ifelse(data$F8 == 9, as.integer(1), as.integer(0))
-data$F8_10 <- ifelse(data$F8 == 10, as.integer(1), as.integer(0))
-data$F8_11 <- ifelse(data$F8 == 11, as.integer(1), as.integer(0))
-data$F8_12 <- ifelse(data$F8 == 12, as.integer(1), as.integer(0))
+for (i in 1:12) {
+
+  # ダミー変数名を作る
+  var <- paste("F8_", as.character(i))
+
+  # そのダミー変数の値と一致するときに1、そうでなければ0
+  data[var] <- ifelse(data$F8 == i, as.integer(1), as.integer(0))
+}
 data <- select(data, -"F8")
 
 # 居住区をダミー変数にする
+for (i in 1:19) {
+
+  # ダミー変数名を作る
+  var <- paste("SC1_", as.character(i))
+
+  # そのダミー変数の値と一致するときに1、そうでなければ0
+  data[var] <- ifelse(data$SC1 == i, as.integer(1), as.integer(0))
+}
+data <- select(data, -"SC1")
 
 View(data)
