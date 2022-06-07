@@ -8,7 +8,7 @@ excluded_vars <- c("SAMPLEID", "clid", "F3", "F9")
 data <- select(rawdata, -excluded_vars)
 
 # 2値変数を0か1にする
-data$TARGET <- as.integer(data$TARGET - 1) #居住者:0, 非居住者:1
+data$TARGET <- ifelse(data$TARGET == 1, as.integer(1), as.integer(0)) #居住者:1, 非居住者:0
 data$F1 <- as.integer(data$F1 - 1) # 男:0, 女:1
 data$F4 <- as.integer(data$F4 - 1) # 未婚:0, 既婚:1
 data$F5 <- as.integer(data$F5 - 1) # 子なし:0, 子あり:1
