@@ -42,21 +42,22 @@ for (i in 1:12) {
 }
 data <- select(data, -"F8")
 
-# 居住区をダミー変数にする
-# SC1_1 = 鶴見区 ~ SC1_18 = 瀬谷区 として、金沢区は基準として除外する
-for (i in 1:18) {
-
-  # 金沢区を基準として除外する
-  if (i == 10) { next }
-
-  # ダミー変数名を作る
-  var <- paste0("SC1_",i)
-
-  # そのダミー変数の値と一致するときに1、そうでなければ0
-  data[var] <- ifelse(data$SC1 == i, as.integer(1), as.integer(0))
-}
+# # 居住区をダミー変数にする
+# # SC1_1 = 鶴見区 ~ SC1_18 = 瀬谷区 として、金沢区は基準として除外する
+# for (i in 1:18) {
+#
+#   # 金沢区を基準として除外する
+#   if (i == 10) { next }
+#
+#   # ダミー変数名を作る
+#   var <- paste0("SC1_",i)
+#
+#   # そのダミー変数の値と一致するときに1、そうでなければ0
+#   data[var] <- ifelse(data$SC1 == i, as.integer(1), as.integer(0))
+# }
 data <- select(data, -"SC1")
 
 View(data)
-# glm(TARGET ~ F4 + Q3 + Q4 + Q5 + Q7 + Q8 + Q9, data=data, family="binomial")
-# glm(TARGET ~ . -SC_1, data=data, family="binomial")
+glm(TARGET ~ . - F2S1N - F1 - F4 - F5 - F6 - F7 - F8_1 - F8_8 - F8_10 - F8_12 - F8_9
+  - Q2 - Q3 - Q6 - Q9 - Q10 - Q12 - Q13  - Q16 -Q17 - Q18 - Q19 - Q20 - Q21 - Q22 - Q23 - Q24 - Q25 - Q26 - Q27 - Q28 - Q29 - Q30 - Q31  - Q32 - Q33 - Q34 - Q35 - Q36 ,
+    data=data, family="binomial")
