@@ -34,7 +34,8 @@ for (i in 1:12) {
   if (i == 3) { next }
 
   # ダミー変数名を作る
-  var <- paste("F8_", as.character(i))
+  var <- paste0('F8_', i)
+
 
   # そのダミー変数の値と一致するときに1、そうでなければ0
   data[var] <- ifelse(data$F8 == i, as.integer(1), as.integer(0))
@@ -49,7 +50,7 @@ for (i in 1:18) {
   if (i == 10) { next }
 
   # ダミー変数名を作る
-  var <- paste("SC1_", as.character(i))
+  var <- paste0("SC1_",i)
 
   # そのダミー変数の値と一致するときに1、そうでなければ0
   data[var] <- ifelse(data$SC1 == i, as.integer(1), as.integer(0))
@@ -57,3 +58,5 @@ for (i in 1:18) {
 data <- select(data, -"SC1")
 
 View(data)
+# glm(TARGET ~ F4 + Q3 + Q4 + Q5 + Q7 + Q8 + Q9, data=data, family="binomial")
+# glm(TARGET ~ . -SC_1, data=data, family="binomial")
